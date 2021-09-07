@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" cds-base-font="16">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlyFont</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-normalize@1.1.0/modern-normalize.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@cds/core@5.5.0/global.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@cds/city@1.1.0/css/bundles/default.min.css"
+    />
+    <link rel="stylesheet" href="./main.css" />
+
+    <script type="module">
+      import "https://cdn.skypack.dev/@cds/core@v5.5.0/button/register.js";
+      import "https://cdn.skypack.dev/@cds/core@v5.5.0/card/register.js";
+      import "https://cdn.skypack.dev/@cds/core@v5.5.0/divider/register.js";
+      import "https://cdn.skypack.dev/@cds/core@v5.5.0/file/register.js";
+    </script>
+  </head>
+
+  <body cds-text="body">
+    <div class="main-container">
+      <header class="header">
+        <h1 class="headerText">FlyFont</h1>
+      </header>
+      <main cds-layout="vertical gap:xl" class="wrapper">
+        <div class="editor">
+          <div cds-layout="horizontal gap:xl align:vertical-stretch">
+            <cds-card aria-labelledby="cardWithEditor">
+              <div cds-layout="vertical gap:md">
+                <h2 cds-text="section" cds-layout="p-y:sm">Editor</h2>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div cds-text="body light" cds-layout="p-y:md">
+                  <div class="editor__code">
+                    <div id="editorCode"></div>
+                  </div>
+                </div>
+              </div>
+            </cds-card>
+
+            <cds-card aria-labelledby="cardWithIconPreview">
+              <div cds-layout="vertical gap:md">
+                <h2 cds-text="section" cds-layout="p-y:sm">Preview</h2>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div cds-text="body light" cds-layout="p-y:md">
+                  <div class="editor__preview">
+                    <iframe id="editorPreview" frameborder="0"></iframe>
+                  </div>
+                </div>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div
+                  cds-layout="horizontal gap:sm p-y:sm align:vertical-center"
+                >
+                  <cds-button onclick="SvgTextToFontIcon()">Convert</cds-button>
+                </div>
+              </div>
+            </cds-card>
+
+            <cds-card aria-labelledby="cardWithFontIconPreview">
+              <div cds-layout="vertical gap:md">
+                <h2 cds-text="section" cds-layout="p-y:sm">Font Icon</h2>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div cds-text="body light" cds-layout="p-y:md">
+                  <div class="fonticon__preview">
+                    <iframe id="fontIconPreview" frameborder="0"></iframe>
+                  </div>
+                </div>
+              </div>
+            </cds-card>
+          </div>
+        </div>
+        <div class="fileUpload">
+          <div cds-layout="horizontal gap:xl align:vertical-stretch">
+            <cds-card aria-labelledby="cardWithFileUpload">
+              <div cds-layout="vertical gap:md">
+                <h2 cds-text="section" cds-layout="p-y:sm">Upload SVG File</h2>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div
+                  cds-text="body light"
+                  cds-layout="horizontal gap:md align:horizontal-center"
+                >
+                  <div class="fileSelection">
+                    <cds-form-group layout="horizontal">
+                      <cds-file layout="horizontal">
+                        <label>SVG File</label>
+                        <input
+                          type="file"
+                          id="fileElem"
+                          accept="image/svg+xml"
+                        />
+                        <cds-control-message
+                          >Select file to convert</cds-control-message
+                        >
+                      </cds-file>
+                    </cds-form-group>
+                  </div>
+                </div>
+              </div>
+            </cds-card>
+
+            <cds-card aria-labelledby="cardWithIconPreview">
+              <div cds-layout="vertical gap:md">
+                <h2 cds-text="section" cds-layout="p-y:sm">Preview</h2>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div cds-text="body light" cds-layout="p-y:md">
+                  <div id="fileList">
+                    <p>No files selected!</p>
+                  </div>
+                  <div id="fileSize"></div>
+                </div>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div
+                  cds-layout="horizontal gap:sm p-y:sm align:vertical-center"
+                >
+                  <cds-button onclick="FileUpload()">Convert</cds-button>
+                </div>
+              </div>
+            </cds-card>
+
+            <cds-card aria-labelledby="cardWithFontIconPreview">
+              <div cds-layout="vertical gap:md">
+                <h2 cds-text="section" cds-layout="p-y:sm">Font Icon</h2>
+                <cds-divider cds-card-remove-margin></cds-divider>
+                <div cds-text="body light" cds-layout="p-y:md">
+                  <div class="fonticonfile__preview">
+                    <iframe
+                      id="iFrame"
+                      title="fonIUconPreview"
+                      src="./out/vrni-icon.html"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </cds-card>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/monaco-editor/min/vs/loader.js"
+    ></script>
+    <script src="./editorConverter.js"></script>
+    <script src="./fileConverter.js"></script>
+  </body>
+</html>

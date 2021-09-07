@@ -1,0 +1,27 @@
+{
+  "name": "flyfont",
+  "version": "1.0.0",
+  "description": "Convert SVG to Fantastic Icon",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run test",
+    "serve": "mkdir -p ./src/ui/public/uploads && mkdir -p ./src/ui/public/out && node ./src/app.js"
+  },
+  "keywords": [
+    "svg",
+    "fantisticon",
+    "convert"
+  ],
+  "author": "klaxit@vmware.com",
+  "license": "MIT",
+  "dependencies": {
+    "@cds/city": "^1.1.0",
+    "@cds/core": "^5.5.3",
+    "@clr/icons": "^12.0.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "fantasticon": "^1.2.2",
+    "multer": "^1.4.3",
+    "rimraf": "^3.0.2"
+  }
+}
